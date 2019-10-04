@@ -1,9 +1,24 @@
-# liri-node-app
+# Assignment 8: LIRI-Bot 
 
-Link: https://ariellecollinsb.github.io/liri-node-app/
+## Author
+
+Arielle Collins: 
+
+- https://github.com/ariellecollinsb
+
+- ariellecollinsb@gmail.com
 
 
-Requirements:
+
+LIRI-Bot Links: 
+
+- https://github.com/ariellecollinsb/liri-node-app 
+                
+                
+- https://ariellecollinsb.github.io/liri-node-app/
+
+
+## Requirements:
 
 -Make a Node.js app that depends on user input from the command line
 
@@ -14,7 +29,7 @@ Requirements:
 -Read commands and queries from file
 
 
-Technologies Used:
+## Technologies Used:
 
 -Node.js
 -Moment.js
@@ -23,11 +38,10 @@ Technologies Used:
 -Bands In Town Artists Events API
 -Spotify API (via spotify npm module)
 -OMDB API (via request npm module)
--NPM command line utility
+-NPM command line utility + packages
 
-Code Explanation:
+## Code Explanation:
 
-Authentication keys for Spotify are stored in .env "keys.js", and its contents is exported to the main "liri.js" file.
 
 App functionality depends on user input.
 There are 4 main functions: 
@@ -38,28 +52,35 @@ There are 4 main functions:
 
 3) OMDb searches a movie name for relevant film and actor information, and prints it to screen.
 
-(4) Do this reads a command and queries a response from a seperate file.
+4) Do this reads a command and queries a response from a seperate file.
 
 
-API Functionality
+
+## API Functionality
 
 Liri.bot takes in the user's commands(command + search term), and then makes a request to the relevant API. 
 
+               ```node liri.js + command + searchTerm```    
+
+
+-If a command is entered without a search term, a [default](./images/liri-default.png) response, listing all commands will be triggered.
+
 -If the command is 'concert-this', a request is made to the Bands API via axios ```axios.get(queryUrl)```, and a JSON object is returned, then parsed, and only specified perameters;(Venue, Location, Date) 
-are printed to screen, using ```console.log()```.
-In the event of an error, a ```.catch(function (err)``` function is there to log the error.
+are [printed](./images/liri-concert-this.png) to screen, using ```console.log()```.
+In the event of an error, a ```.catch(function (err)``` is there to log the error.
 
-```
-```
-
--If the command is 'spotify-this-song' a request is made to the Spotify API, and a JSON object is returned, then parsed, and only the specified perameters; (Artist(s), Song Name, Url, Album)
-are printed to screen, using console.log.
-In the event of an error, a ```.catch(function (err)``` function is there to log the error.
+-If the command is 'spotify-this-song' a ```spotify.search()``` request is made to the Spotify API, and a JSON object is returned, then parsed, and only the specified perameters; (Artist(s), Song Name, Url, Album)
+are [printed](./images/liri-spotify-this.png) to screen, using console.log.
+In the event of an error, a ```.catch(function (err)``` is there to log the error.
 
 -If the command is 'movie-this' a request is made to the OMDb API using axios ```axios.get(queryUrl)```, and a JSON object is returned, then parsed, and only specified perameters;(Title, Year, IMDB RAting, RT Rating, Country, Language, Plot, Actors) 
-are printed to screen, using ```console.log()```.
-In the event of an error, a ```.catch(function (err)``` function is there to log the error.
+are [printed](./images/liri-movie-this.png) to screen, using ```console.log()```.
+In the event of an error, a ```.catch(function (err)``` is there to log the error.
 
--If the command is 'do-what-it-says' The program 'does what it says', by first, reading the "random.text" file, and executing the command, and the query found there. 
+-If the command is 'do-what-it-says' The program 'does what it says', by first, reading the "random.text" file, and [executing](./images/liri-do-this.png) the command and query found there. 
 
-Appropriate comments and error-checking has been added
+
+
+Security
+
+Authentication keys for Spotify were stored in .env, and then referenced in "keys.js", which was then exported to the main "liri.js" file. By doing this, my keys remain private, and users would need to provide their own DotEnv file.
