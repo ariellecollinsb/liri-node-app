@@ -30,30 +30,44 @@ eg.
 
 liri-node-app
 
-Requirements
+Requirements:
 
-Make a Node.js app that depends on user input from the command line
-Integrate Twitter, Spotify, and OMDb APIs via the appropriate NPM modules
-Use API calls and parse through returned JSON objects, outputting them in a specified format
-Read commands and queries from file
+-Make a Node.js app that depends on user input from the command line
 
-Technologies Used
-Node.js
-JavaScript
-Twitter API (via twitter npm module)
-Spotify API (via spotify npm module)
-OMDb API (via request npm module)
+-Integrate Bands In Town, Spotify, and OMDb APIs via the appropriate NPM modules
 
-Code Explanation
-Authentication keys for Twitter are stored in "keys.js", and we are exporting its contents to the main "liri.js" file
+-Use API calls and parse through returned JSON objects, outputting them in a specified format
 
-What our app does depends on what the user types, and there are 4 main functions: 
-(1) prints latest tweets, 
-(2) Spotify lookup for a song, 
-(3) OMDb lookup for a movie, and 
-(4) read command and query from another file
+-Read commands and queries from file
 
-The program makes a request to the Twitter API that is limited by parameters -- username and number of tweets, and we get back a JSON object that includes an array of the 20 most recent tweets; from there, we selectively output using console.log
+
+Technologies Used:
+
+-Node.js
+-JavaScript
+-Bands In Town Artists Events API
+-Spotify API (via spotify npm module)
+-OMDB API (via request npm module)
+-NPM command line utility
+
+Code Explanation:
+
+Authentication keys for Spotify are stored in "keys.js", and its contents is exported to the main "liri.js" file.
+
+What the app does depends on user input, and there are 4 main functions: 
+1) Bands in town searches for events and touring information, and then prints it to the screen. 
+2) Spotify searches for a song, and relevand artist information, and then prints to screen.
+3) OMDb searches a movie name for relevant film and actor information, and prints it to screen.
+(4) Do this reads a command and queries a response from a seperate file.
+
+The program makes a request to the Bands API and a JSON object is returned. It is then parsed to only print to screen specified output, using console.log 
+
+
+
+
+
+
+
 
 The program also makes a request to the Spotify API, and we get back a JSON object that includes everything we need (artist(s), song, preview link, and album)
 
