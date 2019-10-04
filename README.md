@@ -24,7 +24,7 @@ LIRI-Bot Links:
 
 -Integrate Bands In Town, Spotify, and OMDb APIs via the appropriate NPM modules
 
--Use API calls and parse through returned JSON objects, outputting them in a specified format
+-Use API calls and filter through returned JSON objects, outputting them in a specified format
 
 -Read commands and queries from file
 
@@ -60,7 +60,7 @@ There are 4 main functions:
 
 Liri.bot takes in the user's commands(command + search term), and then makes a request to the relevant API. 
 
-               ```node liri.js + command + searchTerm```    
+               node liri.js + command + searchTerm    
 
 
 -If a command is entered without a search term, a [default](./images/liri-default.png) response, listing all commands will be triggered.
