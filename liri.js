@@ -5,6 +5,7 @@ var Spotify = require('node-spotify-api');
 var axios = require("axios");
 var moment = require("moment");
 var fs = require("fs");
+var inquirer = require("inquirer");
 
 var spotifyThis = function (userInput) {
     var spotify = new Spotify(keys.spotify);
@@ -94,7 +95,11 @@ function commands(command, userInput) {
             break;
 
         default:
-            console.log("Something's wrong...");
+            console.log(`What would you like me to search? My options are:\n`);
+            console.log(`\nTo search a movie, enter "movie-this", then, your search term(Movie Name)\n`);
+            console.log(`\nTo search a song, enter "spotify-this-song", then, your search term(Song Name)\n`);
+            console.log(`\nTo search an artist's event/tour, enter "concert-this", then, your search term(Artist Name)\n`);
+            console.log(`\nTo recieve a random result, enter "do-what-it-says"\n`);
     }
 }
 
