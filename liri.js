@@ -1,33 +1,34 @@
 require("dotenv").config();
-  var keys = require("./keys.js");
 
-  
+var keys = require("./keys.js");
 var Spotify = require('node-spotify-api');
-
 var axios = require("axios");
+var inquirer = require("inquirer");
 
-// var inquirer = require("inquirer");
-
-// var commandsArray =["concert-this", "spotify-this-song", "movie-this", "do-what-it-says"];
 
 var commands = process.argv[2];
-
 var userInput = process.argv.slice(3).join(" ");
 
 
 var spotifyThis = function (userInput) {
     var spotify = new Spotify(keys.spotify);
     console.log(`spotify-this ${userInput}`);
-    spotify
-  .search({ type: 'track', query: 'All the Small Things', limit: 1 })
-  .then(function(response) {
-    console.log(response.tracks.items[0])
-    var result = response.tracks.items[0];
-    
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
+    spotify.search({ type: 'track', query: userInput, limit: 1 }
+    ).then(function (response) {
+
+        var result = response.tracks.items[0];
+        console.log(result);
+        var artistArray = result.album.artists;
+        var artists = ""
+        for (var i = 0; i < artistArray.length; i++) {
+            artists += artistArray[i].name + ","
+        };
+        var url = result.album.external_urls.spotify;
+        console.log(`\n\nArtist(s): ${artists}, \n\nSong: ${userInput}, \n\nURL: ${url}, \n\nAlbum: ${result.album.name}`)
+    }).catch(function (err) {
+
+        console.log(err);
+    });
 };
 
 var concertThis = function (userInput) {
@@ -37,7 +38,16 @@ var concertThis = function (userInput) {
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log(response.data);
+            var result = response.data;
+            // console.log(result);
+            for (var i = 0; i < result.length; i++) {
+                var venue = result[i].venue.name;
+                var location = result[i].venue.city + ", " + result[i].venue.country;
+                var date = result[i].datetime;
+                console.log(`\n\nVenue: ${venue}, \n\nLocation: ${location}, \n\nDate: ${date}\n`);
+            }
+        }).catch(function (err) {
+            console.log(err);
         });
 };
 
@@ -48,7 +58,12 @@ var movieThis = function (userInput) {
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log(response.data);
+            var result = response.data;
+
+            console.log(`\nTitle: ${result.title}, \nYear: ${result.year}, \nIMDB Rating: ${result.rating[0].value}, \nRotten Tomatoes Rating: ${result.rating[1].value}, \nCountry: ${result.country}, \nLanguage: ${result.language}, \nPlot: ${result.plot}, \nActors: ${result.actors}\n`);
+        }).catch(function (err) {
+
+            console.log(err);
         });
 };
 
