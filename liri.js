@@ -3,7 +3,7 @@ require("dotenv").config();
 var keys = require("./keys.js");
 var Spotify = require('node-spotify-api');
 var axios = require("axios");
-var inquirer = require("inquirer");
+var moment = require("moment");
 
 
 var commands = process.argv[2];
@@ -17,14 +17,14 @@ var spotifyThis = function (userInput) {
     ).then(function (response) {
 
         var result = response.tracks.items[0];
-        console.log(result);
         var artistArray = result.album.artists;
         var artists = ""
         for (var i = 0; i < artistArray.length; i++) {
             artists += artistArray[i].name + ","
         };
+        artists = artists.substring(0, artists.length -1);
         var url = result.album.external_urls.spotify;
-        console.log(`\n\nArtist(s): ${artists}, \n\nSong: ${userInput}, \n\nURL: ${url}, \n\nAlbum: ${result.album.name}`)
+        console.log(`\n\nArtist(s): ${artists} \n\nSong: ${userInput} \n\nURL: ${url} \n\nAlbum: ${result.album.name}`)
     }).catch(function (err) {
 
         console.log(err);
@@ -43,7 +43,7 @@ var concertThis = function (userInput) {
             for (var i = 0; i < result.length; i++) {
                 var venue = result[i].venue.name;
                 var location = result[i].venue.city + ", " + result[i].venue.country;
-                var date = result[i].datetime;
+                var date = moment(result[i].datetime).format("MM/DD/YYYY");
                 console.log(`\n\nVenue: ${venue}, \n\nLocation: ${location}, \n\nDate: ${date}\n`);
             }
         }).catch(function (err) {
@@ -60,12 +60,16 @@ var movieThis = function (userInput) {
         function (response) {
             var result = response.data;
 
-            console.log(`\nTitle: ${result.title}, \nYear: ${result.year}, \nIMDB Rating: ${result.rating[0].value}, \nRotten Tomatoes Rating: ${result.rating[1].value}, \nCountry: ${result.country}, \nLanguage: ${result.language}, \nPlot: ${result.plot}, \nActors: ${result.actors}\n`);
+            console.log(`\nTitle: ${result.Title}, \nYear: ${result.Year}, \nIMDB Rating: ${result.Ratings[0].Value}, \nRotten Tomatoes Rating: ${result.Ratings[1].Value}, \nCountry: ${result.Country}, \nLanguage: ${result.Language}, \nPlot: ${result.Plot}, \nActors: ${result.Actors}\n`);
+
+
+
         }).catch(function (err) {
 
             console.log(err);
         });
 };
+// console.log(result);
 
 var doThis = function () {
 
