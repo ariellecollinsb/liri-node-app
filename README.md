@@ -81,6 +81,6 @@ In the event of an error, a ```.catch(function (err)``` is there to log the erro
 
 
 
-Security
+## Security
 
-Authentication keys for Spotify were stored in .env, and then referenced in "keys.js", which was then exported to the main "liri.js" file. By doing this, my keys remain private, and users would need to provide their own DotEnv file.
+Authentication keys for Spotify were stored in a .env file, and then referenced in "keys.js", which was then exported to the main "liri.js" file. By doing this, my keys remain private, and Github users would need to provide their own DotEnv file.
