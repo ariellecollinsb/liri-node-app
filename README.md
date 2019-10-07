@@ -63,21 +63,21 @@ Liri.bot takes in the user's commands(command + search term), and then makes a r
                node liri.js + command + searchTerm    
 
 
--If a command is entered without a search term, a [default](./images/liri-default.png) response, listing all commands will be triggered.
+-If no command or search term is entered, a [default](https://i.imgur.com/Q7bqxBA.png) response, listing all commands will be triggered.
 
 -If the command is 'concert-this', a request is made to the Bands API via axios ```axios.get(queryUrl)```, and a JSON object is returned, then parsed, and only specified perameters;(Venue, Location, Date) 
-are [printed](./images/liri-concert-this.png) to screen, using ```console.log()```.
+are [printed](https://i.imgur.com/8QJ4Ubv.png) to screen, using ```console.log()```.
 In the event of an error, a ```.catch(function (err)``` is there to log the error.
 
 -If the command is 'spotify-this-song' a ```spotify.search()``` request is made to the Spotify API, and a JSON object is returned, then parsed, and only the specified perameters; (Artist(s), Song Name, Url, Album)
-are [printed](./images/liri-spotify-this.png) to screen, using console.log.
+are [printed](https://i.imgur.com/cehSOOL.png) to screen, using console.log.
 In the event of an error, a ```.catch(function (err)``` is there to log the error.
 
 -If the command is 'movie-this' a request is made to the OMDb API using axios ```axios.get(queryUrl)```, and a JSON object is returned, then parsed, and only specified perameters;(Title, Year, IMDB RAting, RT Rating, Country, Language, Plot, Actors) 
-are [printed](./images/liri-movie-this.png) to screen, using ```console.log()```.
+are [printed](https://i.imgur.com/SZ3pKED.png) to screen, using ```console.log()```.
 In the event of an error, a ```.catch(function (err)``` is there to log the error.
 
--If the command is 'do-what-it-says' The program 'does what it says', by first, reading the "random.text" file, and [executing](./images/liri-do-this.png) the command and query found there. 
+-If the command is 'do-what-it-says' The program 'does what it says', by first, reading the "random.text" file, and [executing](https://i.imgur.com/gCASzBO.png) the command and query found there. 
 
 
 

@@ -8,7 +8,6 @@ var fs = require("fs");
 
 var spotifyThis = function (userInput) {
     var spotify = new Spotify(keys.spotify);
-    console.log(`spotify-this ${userInput}`);
     spotify.search({ type: 'track', query: userInput, limit: 1 }
     ).then(function (response) {
 
